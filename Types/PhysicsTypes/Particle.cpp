@@ -19,5 +19,15 @@ void Particle::Update(FLOAT deltaTime)
     Velocity *= FLOATPow(Damping, deltaTime);
 
     // clears force accumulators
-    //clearAccumulator();
+    ClearAccumulator();
+}
+
+void Particle::ClearAccumulator()
+{
+    ForceAccumulation.Clear();
+}
+
+void Particle::AddForce(const Vector3& force)
+{
+    ForceAccumulation += force;
 }
