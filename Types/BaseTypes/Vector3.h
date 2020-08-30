@@ -64,34 +64,41 @@ public:
 		Z *= vector.Z;
 	}
 
-	FLOAT ScalarPRoduct(const Vector3& vector) const
+	FLOAT ScalarProduct(const Vector3& vector) const
 	{
 		return X * vector.X + Y * vector.Y + Z * vector.Z;
 	}
+	
+	Vector3 VectorProduct(const Vector3& vector) const
+	{
+		return Vector3(Y * vector.Z - Z * vector.Y,
+					   Z * vector.X - X * vector.Z,
+					   X * vector.Y - Y * vector.X);
+	}
 
 	// Operators
-	void operator+=(const Vector3& right)
+	void operator+=(const Vector3& vector)
 	{
-		X += right.X;
-		Y += right.Y;
-		Z += right.Z;
+		X += vector.X;
+		Y += vector.Y;
+		Z += vector.Z;
 	}
 
-	Vector3 operator+(const Vector3& right) const
+	Vector3 operator+(const Vector3& vector) const
 	{
-		return Vector3(X + right.X, Y + right.Y, Z + right.Z);
+		return Vector3(X + vector.X, Y + vector.Y, Z + vector.Z);
 	}
 
-	void operator-=(const Vector3& right)
+	void operator-=(const Vector3& vector)
 	{
-		X -= right.X;
-		Y -= right.Y;
-		Z -= right.Z;
+		X -= vector.X;
+		Y -= vector.Y;
+		Z -= vector.Z;
 	}
 
-	Vector3 operator-(const Vector3& right) const
+	Vector3 operator-(const Vector3& vector) const
 	{
-		return Vector3(X - right.X, Y - right.Y, Z - right.Z);
+		return Vector3(X - vector.X, Y - vector.Y, Z - vector.Z);
 	}
 
 	void operator*=(const FLOAT& value)
@@ -110,4 +117,37 @@ public:
 	{
 		return X * vector.X + Y * vector.Y + Z * vector.Z;
 	}
+
+
+	/*
+		Cross Product
+	*/
+	void operator%=(const Vector3& vector)
+	{
+		*this = VectorProduct(vector);
+	}
+
+	Vector3 operator%(const Vector3& vector) const
+	{
+		return Vector3(Y * vector.Z - Z * vector.Y,
+					   Z * vector.X - X * vector.Z,
+					   X * vector.Y - Y * vector.X);
+	}
+
 };
+
+void MakeOrthonormalBasis(Vector3* a, Vector3* b, Vector3* outVector)
+{
+	a->Normalize();
+	(*outVector) = (*a) % (*b);
+	if (outVector->SquareMagnitude() == FLOAT(0))
+	{
+#ifdef DEBUG
+		throw("Input vectors are parallel cannot calculate output");
+#else
+		return;
+#endif // DEBUG
+	}
+	outVector->Normalize();
+	(*b) = (*outVector) % (*a);
+}

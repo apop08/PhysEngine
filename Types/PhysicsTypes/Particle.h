@@ -1,0 +1,25 @@
+#pragma once
+#include "../../TypeDefs/Precision.h"
+#include "../BaseTypes/Vector3.h"
+
+/*
+* Simple Physics object just a point in space with mass
+*/
+class Particle
+{
+protected:
+    Vector3 Position;
+    Vector3 Velocity;
+    Vector3 Acceleration;
+
+    /*
+    * Fake drag
+    */
+    FLOAT Damping;
+
+    /*
+    * Inverse of Mass for faster calculations
+    * Will often have objects of large mass over objects of small mass
+    */
+    FLOAT InverseMass;
+};
