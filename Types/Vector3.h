@@ -45,6 +45,30 @@ public:
 		}
 	}
 
+	void AddScaledVector(const Vector3& vector, const FLOAT& scale)
+	{
+		X += vector.X * scale;
+		Y += vector.Y * scale;
+		Z += vector.Z * scale;
+	}
+
+	Vector3 ComponentProduct(const Vector3& vector) const
+	{
+		return Vector3(X * vector.X, Y * vector.Y, Y * vector.Y);
+	}
+
+	void ComponentProductUpdate(const Vector3& vector)
+	{
+		X *= vector.X;
+		Y *= vector.Y;
+		Z *= vector.Z;
+	}
+
+	FLOAT ScalarPRoduct(const Vector3& vector) const
+	{
+		return X * vector.X + Y * vector.Y + Z * vector.Z;
+	}
+
 	// Operators
 	void operator+=(const Vector3& right)
 	{
@@ -80,5 +104,10 @@ public:
 	Vector3 operator*(const FLOAT& value) const
 	{
 		return Vector3(X * value, Y * value, Z * value);
+	}
+
+	FLOAT operator*(const Vector3& vector) const
+	{
+		return X * vector.X + Y * vector.Y + Z * vector.Z;
 	}
 };
