@@ -1,6 +1,7 @@
 #pragma once
 #include "Precision.h"
 #include "Vector3.h"
+#include "DebugEngine.h"
 
 /*
 * Simple Physics object just a point in space with mass
@@ -28,6 +29,7 @@ protected:
 public:
     void Update(FLOAT deltaTime);
     void AddForce(const Vector3& force);
+    bool HasFiniteMass() const;
 
     // Getters and Setters
     Vector3 GetPosition() const
@@ -93,12 +95,22 @@ public:
 
     FLOAT GetMass() const
     {
-        return 1.f / InverseMass;
+        if (InverseMass == 0)
+        {
+            return FLOATMax;
+        }
+        return FLOAT(1) / InverseMass;
     }
 
     void SetMass(const FLOAT& value)
     {
-        InverseMass = 1.f / value;
+        assert(value != 0);
+        InverseMass = FLOAT(1) / value;
+    }
+
+    void SetInverseMass(const FLOAT& value)
+    {
+        InverseMass = value;
     }
 
 private:

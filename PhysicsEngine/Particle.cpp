@@ -31,3 +31,8 @@ void Particle::AddForce(const Vector3& force)
 {
     ForceAccumulation += force;
 }
+
+bool Particle::HasFiniteMass() const
+{
+    return (InverseMass >= 0.0f);
+}

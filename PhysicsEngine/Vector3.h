@@ -36,7 +36,7 @@ public:
 
 	FLOAT Magnitude() const
 	{
-		return FLOATSqrt(X * X + Y * Y + Z * Z);
+		return FLOATSqrt((X * X) + (Y * Y) + (Z * Z));
 	}
 
 	FLOAT SquareMagnitude() const
