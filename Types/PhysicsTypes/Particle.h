@@ -18,8 +18,11 @@ protected:
     FLOAT Damping;
 
     /*
-    * Inverse of Mass for faster calculations
+    * Inverse of Mass for easier integration
     * Will often have objects of large mass over objects of small mass
     */
     FLOAT InverseMass;
+
+public:
+    void Update(FLOAT deltaTime);
 };

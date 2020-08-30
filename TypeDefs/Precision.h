@@ -4,7 +4,5 @@
 
 typedef float FLOAT;
 
-FLOAT FLOATSqrt(const FLOAT& value)
-{
-	return (FLOAT) sqrt(value);
-}
+#define FLOATSqrt sqrt
+#define FLOATPow powf
