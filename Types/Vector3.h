@@ -11,12 +11,12 @@ public:
 
 private:
 	// Ensures four word alignment for performance.
-	FLOAT Z;
+	FLOAT Pad;
 
 public:
 	// Constructors
-	Vector3() : X(0), Y(0), Z(0) {}
-	Vector3(const FLOAT& x = 0, const FLOAT& y = 0, const FLOAT& z = 0) : X(x), Y(y), Z(z) {}
+	Vector3() : X(0), Y(0), Z(0), Pad(0) {}
+	Vector3(const FLOAT& x, const FLOAT& y = 0, const FLOAT& z = 0) : X(x), Y(y), Z(z), Pad(0) {}
 
 	// Methods
 	void Invert()
@@ -28,7 +28,7 @@ public:
 
 	FLOAT Magnitude() const
 	{
-		return sqrt(X * X + Y * Y + Z * Z);
+		return FLOATSqrt(X * X + Y * Y + Z * Z);
 	}
 
 	FLOAT SquareMagnitude() const
