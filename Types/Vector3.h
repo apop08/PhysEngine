@@ -58,6 +58,18 @@ public:
 		return Vector3(X + right.X, Y + right.Y, Z + right.Z);
 	}
 
+	void operator-=(const Vector3& right)
+	{
+		X -= right.X;
+		Y -= right.Y;
+		Z -= right.Z;
+	}
+
+	Vector3 operator-(const Vector3& right) const
+	{
+		return Vector3(X - right.X, Y - right.Y, Z - right.Z);
+	}
+
 	void operator*=(const FLOAT& value)
 	{
 		X *= value;
