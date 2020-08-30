@@ -1,6 +1,6 @@
 #pragma once
 #include <math.h> // sqrt
-#include "../Config/Config.h"
+#include "Config.h"
 
 typedef float FLOAT;
 

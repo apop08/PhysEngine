@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Types/BaseTypes/Vector3.h"
+#include "../PhysicsEngine/Vector3.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

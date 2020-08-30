@@ -1,5 +1,5 @@
 #include "Particle.h"
-#include "../../DebugEngine/DebugEngine.h"
+#include "DebugEngine.h"
 
 void Particle::Update(FLOAT deltaTime)
 {

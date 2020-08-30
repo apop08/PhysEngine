@@ -1,5 +1,5 @@
 #pragma once
-#include "../../TypeDefs/Precision.h"
+#include "Precision.h"
 
 
 class Vector3

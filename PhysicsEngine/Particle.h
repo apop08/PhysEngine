@@ -1,6 +1,6 @@
 #pragma once
-#include "../../TypeDefs/Precision.h"
-#include "../BaseTypes/Vector3.h"
+#include "Precision.h"
+#include "Vector3.h"
 
 /*
 * Simple Physics object just a point in space with mass
