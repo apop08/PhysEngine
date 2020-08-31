@@ -117,6 +117,11 @@ public:
         return FLOAT(1) / InverseMass;
     }
 
+    FLOAT GetInverseMass() const
+    {
+        return InverseMass;
+    }
+
     void SetMass(const FLOAT& value)
     {
         assert(value != 0);
