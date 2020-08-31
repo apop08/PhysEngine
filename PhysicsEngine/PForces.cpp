@@ -99,3 +99,22 @@ void ParticleBungee::UpdateForce(Particle* particle, FLOAT deltaTime)
     force *= -magnitude;
     particle->AddForce(force);
 }
+
+void ParticleBuoyancy::UpdateForce(Particle* particle, FLOAT deltaTime)
+{
+    FLOAT depth = particle->GetPosition().Y;
+
+    if (depth >= WaterHeight + MaxDepth) return;
+
+    Vector3 force(0, 0, 0);
+    if (depth <= WaterHeight - MaxDepth)
+    {
+        force.Y = LiquidDensity * Volume;
+        particle->AddForce(force);
+        return;
+    }
+
+    force.Y = LiquidDensity * Volume * (depth - MaxDepth - WaterHeight) /
+        2 * MaxDepth;
+    particle->AddForce(force);
+}

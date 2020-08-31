@@ -103,3 +103,21 @@ public:
         RestLength(restLength) {}
     virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
 };
+
+class ParticleBuoyancy : public ParticleForce
+{
+private:
+    FLOAT MaxDepth;
+    FLOAT Volume;
+    FLOAT WaterHeight;
+    FLOAT LiquidDensity;
+
+public:
+    ParticleBuoyancy(const FLOAT& maxDepth, const FLOAT& volume,
+                     const FLOAT& waterHeight, const FLOAT& liquidDensity) :
+        MaxDepth(maxDepth),
+        Volume(volume),
+        WaterHeight(waterHeight),
+        LiquidDensity(liquidDensity) {}
+    virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
+};
