@@ -10,11 +10,14 @@ public:
     Particle* Particle[2];
     FLOAT Restitution;
     Vector3 ContactNormal;
+    FLOAT Penetration;
+    Vector3 ParticleMovement[2];
 
 protected:
     void Resolve(FLOAT deltaTime);
     FLOAT CalculateSeparatingVelocity() const;
 
 private:
-    void ResolveVelocity(FLOAT deltaTime)
+    void ResolveVelocity(FLOAT deltaTime);
+    void ResolvePenetration(FLOAT deltaTime);
 };
