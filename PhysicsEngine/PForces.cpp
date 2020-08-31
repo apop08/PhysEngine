@@ -69,3 +69,33 @@ void ParticleSpring::UpdateForce(Particle* particle, FLOAT deltaTime)
     force *= -magnitude;
     particle->AddForce(force);
 }
+
+void ParticleAnchoredSpring::UpdateForce(Particle* particle, FLOAT deltaTime)
+{
+    Vector3 force;
+    particle->GetPosition(&force);
+    force -= *Anchor;
+
+    FLOAT magnitude = force.Magnitude();
+    magnitude = (RestLength - magnitude) * SpringConstant;
+
+    force.Normalize();
+    force *= magnitude;
+    particle->AddForce(force);
+}
+
+void ParticleBungee::UpdateForce(Particle* particle, FLOAT deltaTime)
+{
+    Vector3 force;
+    particle->GetPosition(&force);
+    force -= Other->GetPosition();
+
+    FLOAT magnitude = force.Magnitude();
+    if (magnitude <= RestLength) return;
+
+    magnitude = SpringConstant * (RestLength - magnitude);
+
+    force.Normalize();
+    force *= -magnitude;
+    particle->AddForce(force);
+}

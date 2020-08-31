@@ -53,7 +53,9 @@ public:
     virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
 };
 
-
+/*
+* Spring between two particles
+*/
 class ParticleSpring : public ParticleForce
 {
 private:
@@ -66,5 +68,38 @@ public:
                    Other(other),
                    SpringConstant(springConstant),
                    RestLength(restLength) {}
+    virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
+};
+
+/*
+* Spring between particle and fixed point
+*/
+class ParticleAnchoredSpring : public ParticleForce
+{
+private:
+    Vector3* Anchor;
+    FLOAT SpringConstant;
+    FLOAT RestLength;
+
+public:
+    ParticleAnchoredSpring(Vector3* anchor, const FLOAT& springConstant, const FLOAT& restLength) :
+        Anchor(anchor),
+        SpringConstant(springConstant),
+        RestLength(restLength) {}
+    virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
+};
+
+class ParticleBungee : public ParticleForce
+{
+private:
+    Particle* Other;
+    FLOAT SpringConstant;
+    FLOAT RestLength;
+
+public:
+    ParticleBungee(Particle* other, const FLOAT& springConstant, const FLOAT& restLength) :
+        Other(other),
+        SpringConstant(springConstant),
+        RestLength(restLength) {}
     virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
 };
