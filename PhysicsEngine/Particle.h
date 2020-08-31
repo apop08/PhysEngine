@@ -37,6 +37,11 @@ public:
         return Position;
     }
 
+    void GetPosition(Vector3* OutPos) const
+    {
+        *OutPos = Position;
+    }
+
     void SetPosition(const Vector3& vector)
     {
         Position = vector;
@@ -54,6 +59,11 @@ public:
         return Velocity;
     }
 
+    void GetVelocity(Vector3* OutVel) const
+    {
+        *OutVel = Velocity;
+    }
+
     void SetVelocity(const Vector3& vector)
     {
         Velocity = vector;
@@ -69,6 +79,11 @@ public:
     Vector3 GetAcceleration() const
     {
         return Acceleration;
+    }
+
+    void GetAcceleration(Vector3* OutAccel) const
+    {
+        *OutAccel = Acceleration;
     }
 
     void SetAcceleration(const Vector3& vector)

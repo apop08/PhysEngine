@@ -33,10 +33,10 @@ public:
 
 class ParticleGravity : public ParticleForce
 {
-public:
+private:
     Vector3 Gravity;
 
-private:
+public:
     ParticleGravity(const Vector3& gravity) : Gravity(gravity) {}
     virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
 };
@@ -44,11 +44,27 @@ private:
 // -v(k1 * v + k2 * v^2)
 class ParticleDrag : public ParticleForce
 {
-public:
+private:
     FLOAT K1;
     FLOAT K2;
 
-private:
+public:
     ParticleDrag(const FLOAT& k1, const FLOAT& k2) : K1(k1), K2(k2) {}
+    virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
+};
+
+
+class ParticleSpring : public ParticleForce
+{
+private:
+    Particle* Other;
+    FLOAT SpringConstant;
+    FLOAT RestLength;
+
+public:
+    ParticleSpring(Particle* other, const FLOAT& springConstant, const FLOAT& restLength) : 
+                   Other(other),
+                   SpringConstant(springConstant),
+                   RestLength(restLength) {}
     virtual void UpdateForce(Particle* particle, FLOAT deltaTime);
 };
